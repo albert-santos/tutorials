@@ -1,0 +1,11 @@
+## Criação de um template de projeto C++ 20
+- Ir em terminal > configurar tarefa
+- Escolher o compilador g++ ou gcc baixado pelo mingw64 (https://winlibs.com/)
+- Configurar o arquivo tasks.jason (teminal > configurar tarefa)
+- Terminal > executar tarefa
+- A tarefa é executada e aparace no terminal se foi concluida ou não 
+- Após ser concluidada, clicar enter
+- Testar o comando .\main.exe no terminal para verificar se o VS está conectado de fato
+- Configurar no json para todos arquivos .cpp geraram um único arquivo .exe
+- Na paleta de comandos digitar C++ e encontrar a opção que tenha (UI)
+- Nessa parte podemos escolher qual compilador será utilizado apartir de agora. Além de configurar o g++20 como padrão
