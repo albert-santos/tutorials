@@ -1,0 +1,47 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "Build with GCC 11.2.0",
+			"command": "C:\\Users\\albert.DESKTOP-015ON1O\\mingw64\\bin\\g++.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-std=c++20",
+				"-g",
+				"${workspaceFolder}\\*cpp",
+				"-o",
+				"${fileDirname}\\rooster.exe"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compilador: C:\\Users\\albert.DESKTOP-015ON1O\\mingw64\\bin\\g++.exe"
+		},
+		{
+			"type": "cppbuild",
+			"label": "Build with Clang 13.0.0",
+			"command": "C:\\Users\\albert.DESKTOP-015ON1O\\mingw64\\bin\\clang++.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-std=c++20",
+				"-g",
+				"${workspaceFolder}\\*cpp",
+				"-o",
+				"${fileDirname}\\rooster.exe"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compilador: C:\\Users\\albert.DESKTOP-015ON1O\\mingw64\\bin\\clang++.exe"
+		}
+	]
+}
