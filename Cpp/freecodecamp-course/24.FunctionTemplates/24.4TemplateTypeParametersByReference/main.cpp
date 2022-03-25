@@ -10,6 +10,18 @@ int main() {
     auto result = maximum(a, b);
     std::cout << "Out - &a: " << &a << std::endl;
 
+
+    std::string x1 {"animation_SDN"};
+    std::string x2 {".xml"};
+
+    int i {0};
+
+    std::string aux = std::to_string(i);
+
+    std::string concat = x1 + aux + x2; 
+
+    std::cout << concat << std::endl;
+
     return 0;
 }
 
