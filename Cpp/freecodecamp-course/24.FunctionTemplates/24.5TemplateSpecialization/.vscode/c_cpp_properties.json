@@ -1,15 +1,19 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
-            "defines": [],
-            "compilerPath": "/home/linuxbrew/.linuxbrew/bin/gcc-11",
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:\\Users\\albert.DESKTOP-015ON1O\\mingw64\\bin\\gcc.exe",
             "cStandard": "gnu17",
-            "cppStandard": "c++20",
-            "intelliSenseMode": "linux-gcc-x64"
+            "cppStandard": "gnu++20",
+            "intelliSenseMode": "windows-gcc-x64"
         }
     ],
     "version": 4
