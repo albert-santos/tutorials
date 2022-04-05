@@ -1,5 +1,6 @@
 #include <iostream>
 #include "shape.h"
+#include <memory>
 #include "oval.h"
 #include "circle.h"
 
@@ -48,12 +49,17 @@ int main() {
 
 
     //Shapes stored in collections
-    Shape* shape_collection[]{&shape1, &oval1, &circle1};
+    // Shape* shape_collection[]{&shape1, &oval1, &circle1};
 
-    for (Shape* s_ptr: shape_collection){
-        s_ptr->draw();
+    // for (Shape* s_ptr: shape_collection){
+    //     s_ptr->draw();
+    // }
+
+    std::shared_ptr<Shape> shapes4[] {std::make_shared<Circle>(12.2, "Circle"), std::make_shared<Oval>(10.0, 20.0, "Oval4")};
+
+    for(auto& s: shapes4) {
+        s->draw();
     }
-
     
    
     return 0;
