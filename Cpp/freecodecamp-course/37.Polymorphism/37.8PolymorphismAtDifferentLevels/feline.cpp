@@ -6,7 +6,7 @@ Feline::Feline(std::string_view fur_style, std::string_view description)
 
 }
 
-Feline::Feline()
+Feline::~Feline()
 {
     
 }
