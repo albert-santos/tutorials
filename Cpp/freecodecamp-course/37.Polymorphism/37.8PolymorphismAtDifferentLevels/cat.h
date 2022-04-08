@@ -24,5 +24,5 @@ class Cat: public Feline
 
 
 
-#endif
+#endif // CAT_H
 
