@@ -27,6 +27,6 @@ arr[0][1] = pessoa1
 print(arr)
 
 primeira_pessoa = arr[0][1]
-Nome = primeira_pessoa.getNome()
+Nome = primeira_pessoa.nome
 
 print(Nome)
