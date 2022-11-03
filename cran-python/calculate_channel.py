@@ -5,7 +5,7 @@ def calculate_channel(user, base_station, base_stations):
     number_of_base_stations = len(base_stations)
 
     # Distância euclidiana
-    distance = (((user.x - base_station.x)^2) + ((user.y - base_station.y)^2))^0.5
+    distance = (((user.x - base_station.x)**2) + ((user.y - base_station.y)**2))**0.5
 
     if (distance <= base_station.coverage_area and base_station.base_station_connected):
         
@@ -32,11 +32,11 @@ def calculate_channel(user, base_station, base_stations):
 
         lost = A + 10 * Y * np.log10(distance/reference_distance) + Sv - equalizer
 
-        received_power = 10^((base_station - lost)/10)/1000
+        received_power = 10**((base_station.transmit_power - lost)/10)/1000
 
         # Calcula a interferência intercelula
         for i in range(0, number_of_base_stations):
-            if (base_stations.base_station_connected and base_stations.id != base_station.id):
+            if (base_stations[i].base_station_connected and base_stations[i].id != base_station.id):
                 distance_a = (((base_stations[i].x - user.x)^2) + ((base_stations[i].y - user.y)^2))^0.5
                 lost_a = base_stations[i].transmit_power - (A + 10 * Y * np.log10(distance_a/reference_distance) + Sv + equalizer)
                 interference = interference + (10^(lost_a/10)) / 1000
