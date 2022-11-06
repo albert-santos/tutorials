@@ -20,7 +20,7 @@ def start_user(users_maximum_number, x, y):
         # Criação de usuários
         for i in range(0, total_users_per_hour):
             new_user = user() # cria um novo usuários
-            new_user.id = i + 1
+            new_user.id = i
             new_user.x = random.random() * x[1]
             new_user.y = random.random() * y[1]
             new_user.required_data_rate = user_required_data_rate

@@ -28,7 +28,7 @@ def calculate_channel(user, base_station, base_stations):
         c = 20
 
         A = 20 * np.log10(4 * np.pi * reference_distance/lambda_)
-        Y = (a - (b * base_station_height)) + ( c / receiving_antenna_height)
+        Y = a - b * base_station_height + ( c / base_station_height)
 
         lost = A + 10 * Y * np.log10(distance/reference_distance) + Sv - equalizer
 
@@ -37,9 +37,9 @@ def calculate_channel(user, base_station, base_stations):
         # Calcula a interferência intercelula
         for i in range(0, number_of_base_stations):
             if (base_stations[i].base_station_connected and base_stations[i].id != base_station.id):
-                distance_a = (((base_stations[i].x - user.x)^2) + ((base_stations[i].y - user.y)^2))^0.5
+                distance_a = (((base_stations[i].x - user.x)**2) + ((base_stations[i].y - user.y)**2))**0.5
                 lost_a = base_stations[i].transmit_power - (A + 10 * Y * np.log10(distance_a/reference_distance) + Sv + equalizer)
-                interference = interference + (10^(lost_a/10)) / 1000
+                interference = interference + (10**(lost_a/10)) / 1000
 
         sinr = (received_power / (white_noise + interference))
 
