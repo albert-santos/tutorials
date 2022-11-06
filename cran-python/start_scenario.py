@@ -18,9 +18,3 @@ def start_scenario(users_maximum_number, small_cells_number, macro_cells_number)
     macro_cells = start_macro(macro_cells_number, X, Y)
 
     return users, small_cells, macro_cells
-
-users, smalls, macros = start_scenario(10,2,1)
-
-print(len(users))
-print(len(smalls))
-print(len(macros))

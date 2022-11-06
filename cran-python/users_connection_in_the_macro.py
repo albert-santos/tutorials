@@ -9,7 +9,7 @@ def users_connection_in_the_macro(users, macros):
 
     # Cria as matrizes que armazenam a taxa de dados, cqi e sinr dos usuários em relação às antenas
     # As linhas representam os usuários e as colunas as antenas
-    rows, cols = (number_of_users + 1, number_of_macros + 1) # dimensões das matrizes
+    rows, cols = (number_of_users, number_of_macros) # dimensões das matrizes
     data_rate = [[0 for i in range(cols)] for j in range(rows)]
     cqi = [[0 for i in range(cols)] for j in range(rows)]
     sinr = [[0 for i in range(cols)] for j in range(rows)]

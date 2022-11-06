@@ -7,14 +7,14 @@ def start_small(small_cells_number, x, y):
     x_positions = np.linspace(x[0], x[1], small_cells_number)
     y_positions = np.linspace(y[0], y[1], small_cells_number)
 
-    print(x_positions)
-    print(y_positions)
+    # print(x_positions)
+    # print(y_positions)
 
     # Lista para armazenar as instâncias das small cells
     small_cells = []
 
     # Contador de small cell
-    counter = 1
+    counter = 0
 
     for i in range(0, small_cells_number):
         for j in range(0, small_cells_number):
