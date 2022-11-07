@@ -4,8 +4,8 @@ from operator import itemgetter
 
 def users_connection_in_the_macro(users, macros):
 
-    number_of_macros = len(macros)
-    number_of_users = len(users)
+    number_of_macros = len(macros) # Número de macros
+    number_of_users = len(users) # Número de usuários
 
     # Cria as matrizes que armazenam a taxa de dados, cqi e sinr dos usuários em relação às antenas
     # As linhas representam os usuários e as colunas as antenas
@@ -14,7 +14,7 @@ def users_connection_in_the_macro(users, macros):
     cqi = [[0 for i in range(cols)] for j in range(rows)]
     sinr = [[0 for i in range(cols)] for j in range(rows)]
 
-    # Calcula o SINR, CQI e DR (1 PRB) de cada usuário para cada small
+    # Calcula o SINR, CQI e DR (para 1 PRB) de cada usuário para cada small
     for i in range(0, number_of_users):
         for j in range(0, number_of_macros):
             data_rate[i][j], cqi[i][j], sinr[i][j] = calculate_channel(users[i], macros[j], macros)
@@ -22,7 +22,7 @@ def users_connection_in_the_macro(users, macros):
     # Dimensão da matriz para armazenar os usuários e a quantidade de PRBs que eles precisam
     # Linhas = quantidade de usuários
     # Colunas 1: id do usuário | Coluna 2: Quantidade de PRB exigida por ele
-    rows, cols = (number_of_users + 1, 2) 
+    rows, cols = (number_of_users, 2) 
     number_of_prbs_requested_by_users = [[0 for i in range(cols)] for j in range(rows)]
 
     # Identificando a quantidade de PRB requisitadas por cadas usuário
@@ -46,7 +46,7 @@ def users_connection_in_the_macro(users, macros):
 
     
     # Organizando em ordem crescente pela quantidade de PRB requisitados de cada usuário
-    number_of_prbs_requested_by_users = sorted(number_of_prbs_requested_by_users[1:], key=itemgetter(1))
+    number_of_prbs_requested_by_users = sorted(number_of_prbs_requested_by_users[0:], key=itemgetter(1))
     
     # Realiza a conexão dos usuários
     for user_id in range(0,number_of_users):
@@ -69,7 +69,7 @@ def users_connection_in_the_macro(users, macros):
                 else:
                     user_requested_PRB = 0
 
-                # Se a base station possui PRB suficientes
+                # Se a base station possui PRBs suficientes
                 if macros[base_station_index].remaining_PRB >= user_requested_PRB:
                     users[i].data_rate = max_user_data_rate * user_requested_PRB # Taxa de dados final do usuário
                     users[i].used_PRBs = user_requested_PRB # quantidade de PRBs alocadas para o usuário
@@ -77,7 +77,7 @@ def users_connection_in_the_macro(users, macros):
                     users[i].base_station_type = 2 # Tip de base station | Macro = 2
                     users[i].CQI = cqi [i][base_station_index] # CQI do usuário
                     users[i].SINR = sinr[i][base_station_index] # SIRN do usuário
-                    users[i].user_connected = True
+                    users[i].user_connected = True # Indica que o usuário está conectado
                     macros[base_station_index].remaining_PRB = macros[base_station_index].remaining_PRB - user_requested_PRB # Diminui a quantidade de PRB disponíveis na base station
                     helper = 1 # Altera a variável auxiliar para sair do while
                 else:
@@ -94,15 +94,19 @@ def users_connection_in_the_macro(users, macros):
                     helper = 1 # Altera a variável auxiliar para sair do while
 
 
-
+    # Conta a quantidade total e quais usuários que estão na macro
+    # A identificação dos usuários é pelo ID
+    # j representa as macros
+    # i representa os usuários
     for j in range(0, number_of_macros):
         counter = 1
         macros[j].connected_users = []
         for i in range(0,number_of_users):
             if users[i].base_station_id == j and users[i].base_station_type == 2:
-                macros[j].connected_users.append(i) # Adiciona o id do usuário na lista de usuários da base station
+                macros[j].connected_users.append(users[i].id) # Adiciona o id do usuário na lista de usuários da base station
                 counter = counter + 1
 
+        # Armazena o total de usuários na macro j
         macros[j].total_users = len(macros[j].connected_users)
 
                 

@@ -4,8 +4,8 @@ from operator import itemgetter
 
 def users_connection_in_the_small(users, smalls):
 
-    number_of_smalls = len(smalls)
-    number_of_users = len(users)
+    number_of_smalls = len(smalls) # Número de smalls cells base stations
+    number_of_users = len(users) # Número de usuários
 
     # Cria as matrizes que armazenam a taxa de dados, cqi e sinr dos usuários em relação às antenas
     # As linhas representam os usuários e as colunas as antenas
@@ -22,7 +22,7 @@ def users_connection_in_the_small(users, smalls):
     # Dimensão da matriz para armazenar os usuários e a quantidade de PRBs que eles precisam
     # Linhas = quantidade de usuários
     # Colunas 1: id do usuário | Coluna 2: Quantidade de PRB exigida por ele
-    rows, cols = (number_of_users + 1, 2) 
+    rows, cols = (number_of_users, 2) 
     number_of_prbs_requested_by_users = [[0 for i in range(cols)] for j in range(rows)]
 
     # Identificando a quantidade de PRB requisitadas por cadas usuário
@@ -46,7 +46,7 @@ def users_connection_in_the_small(users, smalls):
 
     
     # Organizando em ordem crescente pela quantidade de PRB requisitados de cada usuário
-    number_of_prbs_requested_by_users = sorted(number_of_prbs_requested_by_users[1:], key=itemgetter(1))
+    number_of_prbs_requested_by_users = sorted(number_of_prbs_requested_by_users[0:], key=itemgetter(1))
     
     # Realiza a conexão dos usuários
     for user_id in range(0,number_of_users):
@@ -77,7 +77,7 @@ def users_connection_in_the_small(users, smalls):
                     users[i].base_station_type = 1 # Tip de base station | Small = 1
                     users[i].CQI = cqi [i][base_station_index] # CQI do usuário
                     users[i].SINR = sinr[i][base_station_index] # SIRN do usuário
-                    users[i].user_connected = True
+                    users[i].user_connected = True # Indica que o usuário está conectado
                     smalls[base_station_index].remaining_PRB = smalls[base_station_index].remaining_PRB - user_requested_PRB # Diminui a quantidade de PRB disponíveis na base station
                     helper = 1 # Altera a variável auxiliar para sair do while
                 else:
@@ -94,7 +94,10 @@ def users_connection_in_the_small(users, smalls):
                     helper = 1 # Altera a variável auxiliar para sair do while
 
 
-
+    # Conta a quantidade total e quais usuários que estão nas smalls cells base stations
+    # A identificação dos usuários é pelo ID
+    # j representa as smalls
+    # i representa os usuários
     for j in range(0, number_of_smalls):
         counter = 1
         smalls[j].connected_users = []
@@ -103,6 +106,7 @@ def users_connection_in_the_small(users, smalls):
                 smalls[j].connected_users.append(i) # Adiciona o id do usuário na lista de usuários da base station
                 counter = counter + 1
 
+        # Armazena o total de usuários na small j
         smalls[j].total_users = len(smalls[j].connected_users)
 
                 
