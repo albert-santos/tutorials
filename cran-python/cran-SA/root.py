@@ -58,12 +58,12 @@ def root(users_maximum_number, small_cells_number, macro_cells_number):
         # Conexão dos usuários na macro base station
         users_after_connection_in_macro, macros_after_connetion = users_connection_in_the_macro(total_users_per_hour, macros_copy)
         # Conexão dos usuários na small base station
-        users_after_connection_in_small, smalls_after_connection = users_connection_in_the_small(users_after_connection_in_macro, smalls_copy)
+        users_after_connection_in_small_and_macro, smalls_after_connection = users_connection_in_the_small(users_after_connection_in_macro, smalls_copy)
         # Calcula a quantidade e taxa de usuários em cada small base station
-        base_station_users_and_throughputs = calculate_base_station_users_and_throughputs(smalls_after_connection, users_after_connection_in_small)
+        base_station_users_and_throughputs = calculate_base_station_users_and_throughputs(smalls_after_connection, users_after_connection_in_small_and_macro)
 
         # Calcula os resultados
-        results[j][:]= calculate_results(users_after_connection_in_small, smalls_after_connection)
+        results[j][:]= calculate_results(users_after_connection_in_small_and_macro, smalls_after_connection)
 
         # Limpa a variável para receber os usuários da próxima hora
         total_users_per_hour = []
