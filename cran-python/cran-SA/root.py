@@ -2,7 +2,7 @@ from start_scenario import start_scenario
 from users_connection_in_the_macro import users_connection_in_the_macro
 from users_connection_in_the_small import users_connection_in_the_small
 from calculate_base_station_users_and_throughputs import calculate_base_station_users_and_throughputs
-from calculate_results import calculate_results
+from SA_algorithm import SA_algorithm
 import copy
 
 """
@@ -62,10 +62,11 @@ def root(users_maximum_number, small_cells_number, macro_cells_number):
         # Calcula a quantidade e taxa de usuários em cada small base station
         base_station_users_and_throughputs = calculate_base_station_users_and_throughputs(smalls_after_connection, users_after_connection_in_small_and_macro)
 
-        # Calcula os resultados
-        results[j][:]= calculate_results(users_after_connection_in_small_and_macro, smalls_after_connection)
+        # Otimização utilizando Simulated Annealing (SA)
+        results, base_stations_after_optimized_connection = SA_algorithm(base_station_users_and_throughputs, total_users_per_hour, smalls_copy, macros_copy)
 
         # Limpa a variável para receber os usuários da próxima hora
         total_users_per_hour = []
 
-    return results 
+    # os usuários são retornados para saber a posição e a hora a qual pertencem    
+    return results, base_stations_after_optimized_connection, users

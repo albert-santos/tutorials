@@ -1,8 +1,11 @@
 from calculate_channel import calculate_channel
 import numpy as np
 from operator import itemgetter
+import copy
 
 def users_connection_in_the_macro(users, macros):
+
+    users = copy.deepcopy(users)
 
     number_of_macros = len(macros) # Número de macros
     number_of_users = len(users) # Número de usuários
