@@ -28,7 +28,7 @@ def start_small(small_cells_number, x, y):
             new_small_cell.remaining_PRB = 50 # Número de PRBs disponíveis
             new_small_cell.bandwidth = 10e6 # Largura de banda em Mhz
             new_small_cell.coverage_area = 150 # Área de cobertura
-            new_small_cell.height = 6 # Altura da base statino
+            new_small_cell.height = 6 # Altura da base station
 
             small_cells.append(new_small_cell) # Adiciona a small cell base station criada na lista de small cells
 

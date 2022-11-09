@@ -1,8 +1,12 @@
 from calculate_channel import calculate_channel
 import numpy as np
 from operator import itemgetter
+import copy
 
 def users_connection_in_the_small(users, smalls):
+
+    users = copy.deepcopy(users)
+    smalls = copy.deepcopy(smalls)
 
     number_of_smalls = len(smalls) # Número de smalls cells base stations
     number_of_users = len(users) # Número de usuários

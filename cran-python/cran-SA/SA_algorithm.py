@@ -5,6 +5,8 @@ from turns_on_only_selected_base_stations import turns_on_only_selected_base_sta
 
 def SA_create_neighbour(base_station_organization):
 
+    base_station_organization = copy.deepcopy(base_station_organization)
+
     # Número de base stations
     number_of_base_stations = len(base_station_organization[:])
     
