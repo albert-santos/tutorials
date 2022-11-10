@@ -63,7 +63,7 @@ def root(users_maximum_number, small_cells_number, macro_cells_number):
         base_station_users_and_throughputs = calculate_base_station_users_and_throughputs(smalls_after_connection, users_after_connection_in_small_and_macro)
 
         # Otimização utilizando Simulated Annealing (SA)
-        results, base_stations_after_optimized_connection = SA_algorithm(base_station_users_and_throughputs, total_users_per_hour, smalls_copy, macros_copy)
+        results[j][:], base_stations_after_optimized_connection = SA_algorithm(base_station_users_and_throughputs, total_users_per_hour, smalls_copy, macros_copy)
 
         # Limpa a variável para receber os usuários da próxima hora
         total_users_per_hour = []
