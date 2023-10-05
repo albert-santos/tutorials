@@ -19,7 +19,9 @@ def turns_on_only_selected_base_stations(number_of_activated_base_stations, user
 
     # Conecta as N primeiras (number_of_activated_base_stations) small cells já organizadas pelo algoritmo de otimização
     for j in range(0, number_of_activated_base_stations):
+        # Obtém o ID das primeiras smalls cells
         base_station_id = best_base_station_organization[j][0]
+        # A partir do ID liga a small cell selecionada
         smalls[base_station_id].base_station_connected = True
 
 
